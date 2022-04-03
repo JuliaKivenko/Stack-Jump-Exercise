@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
+        //for moving the camera when player jumps on a new platform
         if (activateCameraMove)
         {
             Vector3 endPosition = player.transform.position + offset;
@@ -29,6 +30,7 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    //general coroutine for moving the camera
     public IEnumerator MoveCamera(float time, Vector3 targetPosition)
     {
         Vector3 startPosition = transform.position;

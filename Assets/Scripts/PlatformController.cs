@@ -23,6 +23,7 @@ public class PlatformController : MonoBehaviour
         }
     }
 
+    //used every time a new game starts. Calculates platform height and sets platform spawn distance to that. 
     public void StartSpawningPlatforms()
     {
         BoxCollider platformCollider = platformsPool.GetPooledObject().GetComponentInChildren<BoxCollider>();
@@ -32,6 +33,7 @@ public class PlatformController : MonoBehaviour
         spawnPlatform = true;
     }
 
+    //Spawn platforms at random intervals, sets their parameters
     public IEnumerator SpawnPlatforms()
     {
         spawnPlatform = false;

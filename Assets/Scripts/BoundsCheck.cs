@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BoundsCheck : MonoBehaviour
 {
+    //Sets platforms inactive, if it is too far away from player 
+
     GameObject parentObject;
     PlayerController player;
     private void Start()

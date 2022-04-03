@@ -26,6 +26,7 @@ public class UIController : MonoBehaviour
         scoreText.text = score.ToString();
     }
 
+    //called when player presses the "start' or "restart" buttons. 
     public void PressStart()
     {
         if (!gameController.firstRound)

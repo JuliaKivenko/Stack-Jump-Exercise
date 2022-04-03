@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
         cameraController = FindObjectOfType<CameraController>();
     }
 
+    //Enables player controls, bounds check and platform spawning
     public void StartGame()
     {
         player.disableFarawayPlatforms = true;
@@ -29,6 +30,7 @@ public class GameController : MonoBehaviour
         player.enableControls = true;
     }
 
+    //stops the game and shows the game over screen
     public void GameOver()
     {
         firstRound = false;
@@ -46,6 +48,7 @@ public class GameController : MonoBehaviour
         uiController.ShowGameOverScreen(score);
     }
 
+    //clears the scene of all the platforms, resets the camera, player and the score
     public void ResetScene()
     {
         foreach (GameObject platformGameObject in platformController.platformsPool.pooledObjects)

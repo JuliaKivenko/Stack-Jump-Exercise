@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //check if player is grounded
     public bool isGrounded()
     {
         hitDetect1 = Physics.Raycast(groundCheckOrigin1.position, Vector3.down, out hitData, hitCheckDistance, groundLayerMask);
@@ -57,6 +58,7 @@ public class PlayerController : MonoBehaviour
         return hitData.collider != null;
     }
 
+    //make player jump on mouse click and if player is grounded
     void HandleControls()
     {
         if (Input.GetMouseButtonDown(0) == true && isGrounded())
@@ -86,6 +88,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    //move the camera and add score when player lands on a new platform
     void LandOnNewPlatform()
     {
         Platform platformBelow = hitData.collider.GetComponentInParent<Platform>();
@@ -102,26 +105,25 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
     private void OnCollisionEnter(Collision other)
     {
+        //check if player collides with the platform's side and if yes kill the player
+
         if (other.gameObject.tag == "Platform")
         {
             for (int i = 0; i < other.contacts.Length; i++)
             {
                 if (Vector3.Angle(other.contacts[i].normal, Vector3.right) <= 5f || Vector3.Angle(other.contacts[i].normal, Vector3.left) <= 5f)
                 {
-                    Debug.Log("Collide");
                     playerYeetDirection = other.contacts[i].normal;
                     Die();
                 }
             }
         }
-        if (other.gameObject.layer == groundLayerMask && !isGrounded())
-        {
-            gameController.GameOver();
-        }
     }
 
+    //yeet player, disable controls, call Game Over method
     public void Die()
     {
         playerRB.freezeRotation = false;
@@ -131,6 +133,7 @@ public class PlayerController : MonoBehaviour
         gameController.GameOver();
     }
 
+    //use to reset player position
     public void ResetTransform()
     {
         playerRB.velocity = Vector3.zero;

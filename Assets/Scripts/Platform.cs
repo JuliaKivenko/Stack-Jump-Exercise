@@ -17,12 +17,13 @@ public class Platform : MonoBehaviour
         platformController = FindObjectOfType<PlatformController>();
     }
 
+    //set random speed and starting position of the platform
     public void SetPlatformParameters(Vector3 startPosition)
     {
         shouldStopMoving = false;
         playerHasLanded = false;
         transform.position = startPosition;
-        rotSpeed = Random.Range(minMaxRotSpeed.x, minMaxRotSpeed.y + 1);
+        rotSpeed = Random.Range(minMaxRotSpeed.x, minMaxRotSpeed.y);
         int sideToSpawn = Random.Range(0, 2);
         switch (sideToSpawn)
         {
@@ -33,10 +34,9 @@ public class Platform : MonoBehaviour
                 transform.localEulerAngles = new Vector3(0, 90, 0);
                 break;
         }
-
-
     }
 
+    //rotate the platform from starting position to 0
     public IEnumerator Rotate()
     {
         float timeElapsed = 0f;
